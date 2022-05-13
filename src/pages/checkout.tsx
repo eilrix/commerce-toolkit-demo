@@ -1,12 +1,13 @@
 import { TCromwellPage } from '@cromwell/core';
 import { CContainer, CText } from '@cromwell/core-frontend';
 import { MuiCartList, MuiCheckout } from '@cromwell/toolkit-commerce';
-import React from 'react';
+import React, { useState } from 'react';
 import { Box } from '@mui/material';
 
 import { Layout } from '../components/Layout';
 
-const Checkout: TCromwellPage = (props) => {
+const Checkout: TCromwellPage = () => {
+  const [orderPlaced, setOrderPlaced] = useState(false);
   return (
     <Layout>
       <CContainer id="checkout_page" style={{ margin: '20px 0' }}>
@@ -19,16 +20,18 @@ const Checkout: TCromwellPage = (props) => {
             },
             marginRight: '30px',
           }}>
-            <MuiCheckout />
+            <MuiCheckout onPlaceOrder={() => setOrderPlaced(true)} />
           </Box>
-          <Box sx={{
-            width: {
-              xs: '100%',
-              md: '50%'
-            }
-          }}>
-            <MuiCartList />
-          </Box>
+          {!orderPlaced && (
+            <Box sx={{
+              width: {
+                xs: '100%',
+                md: '50%'
+              }
+            }}>
+              <MuiCartList />
+            </Box>
+          )}
         </CContainer>
       </CContainer>
     </Layout>

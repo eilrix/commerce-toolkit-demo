@@ -29,11 +29,13 @@ const Product: TCromwellPage<ProductProps> = (props) => {
             <h1>{product?.name}</h1>
           </CContainer>
           <CContainer id="product_price" style={{ display: 'flex', margin: '20px 0' }}>
-            <p style={{ textDecoration: 'line-through', marginRight: '10px' }}
-            >{store.getPriceWithCurrency(product?.oldPrice)}</p>
-            <p>{store.getPriceWithCurrency(product?.price)}</p>
+            {product?.oldPrice && (
+              <p style={{ textDecoration: 'line-through', fontSize: '24px', marginRight: '10px', opacity: 0.5 }}
+              >{store.getPriceWithCurrency(product?.oldPrice)}</p>
+            )}
+            <p style={{ fontSize: '24px', fontWeight: 600 }}>{store.getPriceWithCurrency(product?.price)}</p>
           </CContainer>
-          <CContainer id="product_attributes">
+          <CContainer id="product_attributes" style={{ marginBottom: '40px' }}>
             {product && (
               <MuiProductAttributes product={product} />
             )}
@@ -48,7 +50,7 @@ const Product: TCromwellPage<ProductProps> = (props) => {
           </CContainer>
         </CContainer>
       </CContainer>
-      <CContainer id="product_description">
+      <CContainer id="product_description" style={{ marginBottom: '80px' }}>
         {product?.description && (
           <div dangerouslySetInnerHTML={{ __html: product?.description }}></div>
         )}

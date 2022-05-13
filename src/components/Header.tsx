@@ -1,5 +1,5 @@
 import { getCmsSettings } from '@cromwell/core';
-import { CContainer, CPlugin, Link, registerPlugin, useCart, useUserInfo } from '@cromwell/core-frontend';
+import { CContainer, CPlugin, Link, registerPluginSSR, useCart, useUserInfo } from '@cromwell/core-frontend';
 import { MuiCurrencySwitch, MuiProductSearch } from '@cromwell/toolkit-commerce';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShoppingCart from '@mui/icons-material/ShoppingCart';
@@ -9,11 +9,12 @@ import React from 'react';
 
 import { loginHandler } from './Login';
 
-registerPlugin('@cromwell/plugin-main-menu', '*');
+registerPluginSSR('@cromwell/plugin-main-menu', '*');
 
 export function Header() {
   const cmsSettings = getCmsSettings();
   const cart = useCart();
+  
   const router = useRouter();
   const user = useUserInfo();
 

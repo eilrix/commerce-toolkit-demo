@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { SignIn, SignInProps, SignUp, useAuthClient } from '@cromwell/core-frontend';
-import { Modal, Box, Tabs, Tab, TextField, Button, Paper } from '@mui/material';
+import { SignIn, SignInProps, SignUp } from '@cromwell/core-frontend';
 import { muiNotifier } from '@cromwell/toolkit-commerce';
+import { Box, Button, Modal, Paper, Tab, Tabs, TextField } from '@mui/material';
+import React, { useState } from 'react';
 
 export const loginHandler: {
   open?: (tab?: 'sign-in' | 'sign-up') => void;
@@ -21,7 +21,7 @@ export function Login() {
   const handleTabChange = (event: React.ChangeEvent<unknown>, newValue: number) => {
     if (newValue === 1) setActiveTab('sign-up');
     if (newValue === 0) setActiveTab('sign-in');
-  };
+  }
 
   const signInElements: SignInProps['elements'] = {
     TextField: (props) => <TextField fullWidth
